@@ -1,10 +1,36 @@
-#include<stdio.h>
+#include <stdio.h>
+#include <limits.h>
+#define MAX_SIZE 1000
+
 int main()
 {
-    int a, b, c, d,dif;
-    scanf("%d %d %d %d", &a, &c, &b, &d);
-    dif = ((b*60)+d) - ((a*60)+c);
-    if(dif<=0) dif += 24*60;
-    printf("O JOGO DUROU %d HORA(S) E %d MINUTO(S)\n", dif/60, dif%60);
+    int arr[MAX_SIZE], size, i;
+    int max1, max2;
+    printf("Enter size of the array (1-1000): ");
+    scanf("%d", &size);
+    printf("Enter elements in the array: ");
+    for(i=0; i<size; i++)
+    {
+        scanf("%d", &arr[i]);
+    }
+
+    max1 = max2 = INT_MIN;
+
+    for(i=0; i<size; i++)
+    {
+        if(arr[i] > max1)
+        {
+            max2 = max1;
+            max1 = arr[i];
+        }
+        else if(arr[i] > max2 && arr[i] < max1)
+        {
+            max2 = arr[i];
+        }
+    }
+
+    printf("First largest = %d\n", max1);
+    printf("Second largest = %d", max2);
+
     return 0;
 }
